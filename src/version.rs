@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 /* TODO: expand this list!
- * 
+ *
  * A likely candidate for a canonical source would be the source of all human
  * knowledge, Wikipedia: https://en.wikipedia.org/wiki/List_of_English_Bible_
  * translations#Complete_Bibles
@@ -27,4 +27,3 @@ impl FromStr for BibleVersion {
         }
     }
 }
-
