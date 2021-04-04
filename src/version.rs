@@ -27,3 +27,9 @@ impl FromStr for BibleVersion {
         }
     }
 }
+
+impl Default for BibleVersion {
+    fn default() -> Self {
+        Self::EnglishStandardVersion
+    }
+}

@@ -1,6 +1,8 @@
+use std::fmt;
+use std::fmt::{Display, Formatter};
 use std::str::FromStr;
 
-#[derive(Debug)]
+#[derive(Clone, Copy, Debug)]
 pub enum Book {
     Genesis,
     Exodus,
@@ -143,5 +145,80 @@ impl FromStr for Book {
             "Revelation" => Ok(Self::Revelation),
             _ => Err("Unknown book of the Bible"),
         }
+    }
+}
+
+impl Display for Book {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        let s: String = String::from(match self {
+            Self::Genesis => "Genesis",
+            Self::Exodus => "Exodus",
+            Self::Leviticus => "Leviticus",
+            Self::Numbers => "Numbers",
+            Self::Deuteronomy => "Deuteronomy",
+            Self::Joshua => "Joshua",
+            Self::Judges => "Judges",
+            Self::Ruth => "Ruth",
+            Self::OneSamuel => "1 Samuel",
+            Self::TwoSamuel => "2 Samuel",
+            Self::OneKings => "1 Kings",
+            Self::TwoKings => "2 Kings",
+            Self::OneChronicles => "1 Chronicles",
+            Self::TwoChronicles => "2 Chronicles",
+            Self::Ezra => "Ezra",
+            Self::Nehemiah => "Nehemiah",
+            Self::Esther => "Esther",
+            Self::Job => "Job",
+            Self::Psalm => "Psalm",
+            Self::Proverbs => "Proverbs",
+            Self::Ecclesiastes => "Ecclesiastes",
+            Self::SongofSolomon => "Song of Solomon",
+            Self::Isaiah => "Isaiah",
+            Self::Jeremiah => "Jeremiah",
+            Self::Lamentations => "Lamentations",
+            Self::Ezekiel => "Ezekiel",
+            Self::Daniel => "Daniel",
+            Self::Hosea => "Hosea",
+            Self::Joel => "Joel",
+            Self::Amos => "Amos",
+            Self::Obadiah => "Obadiah",
+            Self::Jonah => "Jonah",
+            Self::Micah => "Micha",
+            Self::Nahum => "Nahum",
+            Self::Habakkuk => "Habakkuk",
+            Self::Zephaniah => "Zephaniah",
+            Self::Haggai => "Haggai",
+            Self::Zechariah => "Zechariah",
+            Self::Malachi => "Malachi",
+            Self::Matthew => "Matthew",
+            Self::Mark => "Mark",
+            Self::Luke => "Luke",
+            Self::John => "John",
+            Self::Acts => "Acts",
+            Self::Romans => "Romans",
+            Self::OneCorinthians => "1 Corinthians",
+            Self::TwoCorinthians => "2 Corinthians",
+            Self::Galatians => "Galatians",
+            Self::Ephesians => "Ephesians",
+            Self::Philippians => "Philippians",
+            Self::Colossians => "Colossians",
+            Self::OneThessalonians => "1 Thessalonians",
+            Self::TwoThessalonians => "2 Thessalonians",
+            Self::OneTimothy => "1 Timothy",
+            Self::TwoTimothy => "2 Timothy",
+            Self::Titus => "Titus",
+            Self::Philemon => "Philemon",
+            Self::Hebrews => "Hebrews",
+            Self::James => "James",
+            Self::OnePeter => "1 Peter",
+            Self::TwoPeter => "2 Peter",
+            Self::OneJohn => "1 John",
+            Self::TwoJohn => "2 John",
+            Self::ThreeJohn => "3 John",
+            Self::Jude => "Jude",
+            Self::Revelation => "Revelation",
+        });
+
+        write!(f, "{}", s)
     }
 }

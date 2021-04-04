@@ -59,3 +59,14 @@ impl FromStr for Reference {
         }
     }
 }
+
+impl ToString for Reference {
+    fn to_string(&self) -> String {
+        match (self.book, self.chapter, self.verse) {
+            (b, Some(c), Some(v)) => format!("{} {}:{}", b, c, v),
+            (b, Some(c), None) => format!("{} {}", b, c),
+            (b, None, None) => format!("{}", b),
+            _ => "INVALID".to_string(),
+        }
+    }
+}

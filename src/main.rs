@@ -1,15 +1,18 @@
+use std::process::exit;
+
 use clap::{crate_version, Clap};
 
+use crate::fetch::fetch;
 use crate::reference::Reference;
 use crate::version::BibleVersion;
 
 pub mod book;
+pub mod fetch;
 pub mod reference;
 pub mod version;
 
 #[derive(Clap)]
 #[clap(version = crate_version!())]
-#[allow(dead_code)] /* TODO: remove! */
 pub struct Opts {
     reference: Reference,
     #[clap(short, long)]
@@ -17,11 +20,22 @@ pub struct Opts {
 }
 
 fn main() {
-    let _opts: Opts = Opts::parse();
+    let opts: Opts = Opts::parse();
 
-    dbg!(_opts.reference);
+    let bible_reference: Reference = opts.reference;
+    let bible_version: BibleVersion = match opts.bible {
+        Some(t) => t,
+        None => BibleVersion::default(),
+    };
 
-    // let reference: Reference = match Reference::from_str(opts.reference {};
+    /* retrieve specified Bible verse */
+    let text: String = match fetch(bible_reference, bible_version) {
+        Ok(t) => t,
+        Err(e) => {
+            eprintln!("bible: {}", e);
+            exit(1);
+        }
+    };
 
-    println!("Hello, world!");
+    println!("{}", text);
 }
