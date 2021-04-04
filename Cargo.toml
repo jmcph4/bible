@@ -1,0 +1,14 @@
+[package]
+name = "bible"
+version = "0.1.0"
+authors = ["Jack McPherson <jmcph4.github@gmail.com>"]
+edition = "2018"
+license = "Unlicense"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = "3.0.0-beta.2"
+reqwest = { version = "0.11.2", features = ["blocking"] }
+serde_json = "1.0.64"
+snailquote = "0.3.0"
